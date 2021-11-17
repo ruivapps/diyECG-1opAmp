@@ -1,33 +1,48 @@
 # DIY ECG (with 1 op-amp)
-**A surprisingly good ECG is possible using a single op-amp.** The main idea is that you _allow_ the simple circuit to amplify noise (mixed in with your ECG), send the noisy signal into a PC using the microphone jack of the sound card, then use Python to remove the noise in real time, revealing the ECG.
 
+forked from https://github.com/swharden/diyECG-1opAmp
 
-**Project page:** http://www.swharden.com/wp/2016-08-08-diy-ecg-with-1-op-amp/
+## Changes
 
-**YouTube demo:** https://www.youtube.com/watch?v=AfirWls9Sys
+* add UI allow user to select input devices.
+* add UI with start/stop button.
+* update to python 3.9 + QT5
 
-[![](software/youtube.png)](https://www.youtube.com/watch?v=AfirWls9Sys)
+## run
 
-## Alternative Project (Sound Card ECG)
-Many people have found this python source code difficult to use due to its dependence on version-specific libraries. A simpler click-to-run EXE for Windows that does essentially the same thing (written in C#) is available on the [**Sound Card ECG project page**](https://github.com/swharden/SoundCardECG).
+only tested on MacOS. the pyaudio requires **portaudio** installed (via port or brew)
 
-Screenshot | Video Demonstration
----|---
-![](https://raw.githubusercontent.com/swharden/SoundCardECG/master/src/SoundCardECG/screenshot.png) | [![SoundCardECG Demonstration](https://raw.githubusercontent.com/swharden/SoundCardECG/master/graphics/thumb4-play.jpg)](https://youtu.be/sP_-f5nsOEo)
+```bash
+cd software
+python3 -m pip install -r requirement.txt
+python3 main.py
+```
 
+## dev
 
-## Python Setup
-This software needs certain libraries like PyQt4 and numpy, so the easiest way to make sure you have versions of everything that get along is to download a pre-packaged Python distribution. This software has been tested and works with WinPython 3.5.2.1 (not the Qt5 one)
+download QT Designer to work with ui_main.ui
 
-* install [WinPython-64bit-3.5.2.1](https://sourceforge.net/projects/winpython/files/WinPython_3.5/3.5.2.1/) _(not the Qt5 one)_
-* download this project and modify go.bat to reflect where your python.exe is
-* build the circuit, plug it into your microphone hole, and run go.bat
+## todo
 
-<img src="software/demo.png" width="500">
+soem interesting things possible in the future.
 
-## Hardware
+basic
 
-<img src="circuit/design.jpg" width="300">
----
-<img src="circuit/circuit.jpg" width="300">
+	* record the wave and reply wave file.
+	* export the graph (length)
+	* persistent settings
 
+need some learning
+
+	* calculate heart rate
+	* smoother display
+	* pattern recognition
+		- sinus rhythm
+		- arrhythmias
+
+build
+
+	* raspberry PI build with 5" screen
+		- boot into to app
+		- hardware button replace keyboard/mouse
+		- battery powered
